@@ -3,19 +3,12 @@
 
 .container {
     display: flex;
-   
-    height: 700px;
-    width: 700px;
-    flex-direction: row;
-    flex-wrap: wrap;
+    height: 850px;
+    width: 850px;
 
-    
+    flex-wrap: wrap;
 }
 
 .container > * {
     box-sizing: border-box;
-    flex-basis: auto;
-
-
-    
 }

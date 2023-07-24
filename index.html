@@ -8,17 +8,19 @@
 
 <body>
     
-    <button>Grid Size</button>
-    
+    <button id="gridSize">Change Grid Size</button>
+    <button id="reset">Reset</button>
     <div class="container"></div>
 
     <script>
         //set up variable names
         const container = document.querySelector('.container');
-        const btn = document.querySelector('button');
+        const gridSizeBtn = document.querySelector('#gridSize');
+        const resetBtn = document.querySelector('#reset');
+        let latestSquareSize = 10;
         
         //initialize with 10x10 grid
-        setSides(10);
+        setSides(latestSquareSize);
 
         //reset grid size
         function setSides(numSquares){
@@ -26,23 +28,34 @@
             while (container.firstChild){
                 container.removeChild(container.firstChild);
             }
+
+            //initialize calculation of width percentage
             let widthPercent;
 
             //create new grid
             for (i = 0; i < (numSquares ** 2); i++){
+                //creating new square divs
                 const square = document.createElement('div');
+                //setting border on new square divs
                 square.style.border = '1px solid black';
+                //calculate what % each box must be from squares per side
                 widthPercent = 100/numSquares; 
+                //change square's width value
                 square.style.width = `${widthPercent}%`;
+                //add square class for selecting just squares, not container later
                 square.classList.add('square');
+                //append square to container
                 container.appendChild(square);
             }
 
             //make squares hoverable
+            //set nodelist of all squares to squares variable
             const squares = document.querySelectorAll('div.square');
-
-            const blackSquare = squares.forEach((square) => {
+            //within nodelist, for each square
+            squares.forEach((square) => {
+                //add mouseover event listener
                 square.addEventListener('mouseover', () => {
+                //which makes square black
                 square.style.backgroundColor = 'black';
             });
         });
@@ -53,10 +66,21 @@
 
 
         //clicking button event
-        btn.addEventListener('click', () =>{
-            let squareSide = prompt('How many squares per side?');
+        gridSizeBtn.addEventListener('click', () =>{
+            let squareSide = prompt('Choose 1 - 100 squares per side');
+            if (squareSide > 100){
+                alert('Setting to 100');
+                squareSide = 100;
+            }
             setSides(squareSide);
+            latestSquareSize = squareSide;
 
+        })
+
+        console.log(latestSquareSize);
+
+        resetBtn.addEventListener('click', () =>{
+            setSides(latestSquareSize);
         })
 
     </script>
