@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Etch-a-Sketch</title>
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+</head>
+
+<body>
+    <div class="container"></div>
+
+    <script>
+        const container = document.querySelector('.container');
+        
+        for (i = 0; i < 16; i++){
+            const square = document.createElement('div');
+            square.style.border = '1px solid black';
+            square.classList.add('square');
+            container.appendChild(square);
+        }
+
+        const squares = document.querySelectorAll('div.square');
+        console.log(squares);
+
+        const blackSquare = squares.forEach((square) => {
+            square.addEventListener('mouseover', () => {
+                console.log('clicked');
+                square.style.backgroundColor = 'black';
+            });
+        });
+
+    </script>
+</body>
+
+</html>
