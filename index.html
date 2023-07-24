@@ -7,9 +7,12 @@
 </head>
 
 <body>
+    <div class="ui">
+        <button id="reset">Reset</button>
+        <button id="gridSize">Change Grid Size</button>
+    </div>
     
-    <button id="gridSize">Change Grid Size</button>
-    <button id="reset">Reset</button>
+    <div class="gridNumber">10 x 10</div>
     <div class="container"></div>
 
     <script>
@@ -17,6 +20,8 @@
         const container = document.querySelector('.container');
         const gridSizeBtn = document.querySelector('#gridSize');
         const resetBtn = document.querySelector('#reset');
+        const gridCounter = document.querySelector('.gridNumber');
+        //set up variable to reset current selected gridsize
         let latestSquareSize = 10;
         
         //initialize with 10x10 grid
@@ -68,17 +73,19 @@
         //clicking button event
         gridSizeBtn.addEventListener('click', () =>{
             let squareSide = prompt('Choose 1 - 100 squares per side');
+            //if user asks for more than 100, automatically set to 100
             if (squareSide > 100){
                 alert('Setting to 100');
                 squareSide = 100;
             }
             setSides(squareSide);
+            //set latestSquareSize in case of reset
             latestSquareSize = squareSide;
+            gridCounter.textContent = latestSquareSize + ' x ' + latestSquareSize;
 
         })
 
-        console.log(latestSquareSize);
-
+        //reset button, recreates grid using last specified square size
         resetBtn.addEventListener('click', () =>{
             setSides(latestSquareSize);
         })
