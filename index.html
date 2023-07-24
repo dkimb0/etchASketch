@@ -7,25 +7,33 @@
 </head>
 
 <body>
+    
     <button>Grid Size</button>
+    
     <div class="container"></div>
 
     <script>
+        //set up variable names
         const container = document.querySelector('.container');
         const btn = document.querySelector('button');
         
+        //initialize with 10x10 grid
         setSides(10);
 
+        //reset grid size
         function setSides(numSquares){
             //remove current grid first
             while (container.firstChild){
                 container.removeChild(container.firstChild);
             }
+            let widthPercent;
 
             //create new grid
             for (i = 0; i < (numSquares ** 2); i++){
                 const square = document.createElement('div');
                 square.style.border = '1px solid black';
+                widthPercent = 100/numSquares; 
+                square.style.width = `${widthPercent}%`;
                 square.classList.add('square');
                 container.appendChild(square);
             }
@@ -34,8 +42,8 @@
             const squares = document.querySelectorAll('div.square');
 
             const blackSquare = squares.forEach((square) => {
-            square.addEventListener('mouseover', () => {
-            square.style.backgroundColor = 'black';
+                square.addEventListener('mouseover', () => {
+                square.style.backgroundColor = 'black';
             });
         });
 
@@ -44,10 +52,11 @@
 
 
 
-
+        //clicking button event
         btn.addEventListener('click', () =>{
             let squareSide = prompt('How many squares per side?');
             setSides(squareSide);
+
         })
 
     </script>

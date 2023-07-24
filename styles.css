@@ -1,18 +1,21 @@
+
+
+
 .container {
     display: flex;
    
-    height: 960px;
-    width: 960px;
-
+    height: 700px;
+    width: 700px;
+    flex-direction: row;
     flex-wrap: wrap;
 
     
 }
 
 .container > * {
+    box-sizing: border-box;
+    flex-basis: auto;
 
-    flex:auto;
 
-
-
+    
 }
