@@ -8,11 +8,13 @@
 
 <body>
     <div class="ui">
-        <button id="reset">Reset</button>
+
         <button id="gridSize">Change Grid Size</button>
+        <button id="reset">Reset</button>
+        <div class="gridNumber">10 x 10</div>
+
     </div>
     
-    <div class="gridNumber">10 x 10</div>
     <div class="container"></div>
 
     <script>
@@ -77,6 +79,8 @@
             if (squareSide > 100){
                 alert('Setting to 100');
                 squareSide = 100;
+            }else if(squareSide === ''){
+                squareSide = 1;
             }
             setSides(squareSide);
             //set latestSquareSize in case of reset
